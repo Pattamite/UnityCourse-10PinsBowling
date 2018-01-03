@@ -4,18 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
-
     public Text standingText;
+
+    private Ball ball;
+
+    public int lastStandingCount = -1;
+    public float settleTime = 3f;
+
     private bool isBallEnter = false;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private float lastChangeTime;
+    // Use this for initialization
+    void Start () {
+        ball = GameObject.FindObjectOfType<Ball>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         standingText.text = CountStanding().ToString();
 
+        if (isBallEnter) {
+            CheckStanding();
+        }
     }
 
     int CountStanding () {
@@ -30,11 +39,32 @@ public class PinSetter : MonoBehaviour {
         return standing;
     }
 
+    void CheckStanding () {
+        int currentStanding = CountStanding();
+
+        if(currentStanding != lastStandingCount) {
+            lastChangeTime = Time.time;
+            lastStandingCount = currentStanding;
+        }
+        else {
+            if((Time.time - lastChangeTime) > settleTime) {
+                PinHaveSettled();
+            }
+        }
+    }
+
+    void PinHaveSettled () {
+        lastStandingCount = -1;
+        standingText.color = Color.green;
+
+        isBallEnter = false;
+        ball.Reset();
+    }
+
     private void OnTriggerEnter (Collider collider) {
         GameObject gameObject = collider.gameObject;
         if (gameObject.GetComponent<Ball>()) {
             isBallEnter = true;
-            print("Ball Entered");
             standingText.color = Color.red;
         }
     }
