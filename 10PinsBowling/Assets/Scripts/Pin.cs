@@ -5,11 +5,13 @@ using UnityEngine;
 public class Pin : MonoBehaviour {
 
     public float standingTreshold;
+    public float distanceToRaise = 80f;
+    private Rigidbody rigidBody;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        rigidBody = GetComponent<Rigidbody>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,5 +36,19 @@ public class Pin : MonoBehaviour {
         else {
             return false;
         }
+    }
+    
+    public void Raise () {
+        if (IsStanding()) {
+            transform.Translate(new Vector3(0, distanceToRaise, 0), Space.World);
+            rigidBody.useGravity = false;
+            rigidBody.isKinematic = true;
+        }
+    }
+
+    public void Lower () {
+        transform.Translate(new Vector3(0, -distanceToRaise, 0), Space.World);
+        rigidBody.useGravity = true;
+        rigidBody.isKinematic = false;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
     public Text standingText;
+    public GameObject pinSet;
 
     private Ball ball;
 
@@ -25,6 +26,22 @@ public class PinSetter : MonoBehaviour {
         if (isBallEnter) {
             CheckStanding();
         }
+    }
+
+    public void RaisePins () {
+        foreach (Pin pin in GameObject.FindObjectsOfType<Pin>()) {
+            pin.Raise();
+        }
+    }
+
+    public void LowerPins () {
+        foreach (Pin pin in GameObject.FindObjectsOfType<Pin>()) {
+            pin.Lower();
+        }
+    }
+
+    public void RenewPins () {
+        Instantiate(pinSet, new Vector3(0, 0, 1829), Quaternion.identity);
     }
 
     int CountStanding () {
