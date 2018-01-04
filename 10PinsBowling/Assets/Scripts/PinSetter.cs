@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
-    public int lastStandingCount = -1;
+    
     public float settleTime = 3f;
     public Text standingText;
     public GameObject pinSet;
 
+    private int lastStandingCount = -1;
     private bool isBallEnter = false;
     private float lastChangeTime;
     private Ball ball;
@@ -80,7 +81,7 @@ public class PinSetter : MonoBehaviour {
         ActionAfterBowl(pinFall);
 
         lastStandingCount = -1;
-        standingText.color = Color.green;
+        standingText.color = Color.black;
 
         isBallEnter = false;
         ball.Reset();
@@ -103,12 +104,9 @@ public class PinSetter : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter (Collider collider) {
-        GameObject gameObject = collider.gameObject;
-        if (gameObject.GetComponent<Ball>()) {
-            isBallEnter = true;
-            standingText.color = Color.red;
-        }
+    public void BallOutOfPlay () {
+        isBallEnter = true;
+        standingText.color = Color.red;
     }
 
     private void OnTriggerExit (Collider collider) {
