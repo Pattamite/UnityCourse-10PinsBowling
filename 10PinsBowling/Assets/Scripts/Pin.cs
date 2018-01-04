@@ -11,6 +11,7 @@ public class Pin : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
+        rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 	
 	// Update is called once per frame

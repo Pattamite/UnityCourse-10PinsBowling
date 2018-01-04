@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour {
     // Use this for initialization
     void Start(){
         rigidBody = GetComponent<Rigidbody>();
+        rigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rigidBody.useGravity = false;
 
         startPosition = transform.position;
