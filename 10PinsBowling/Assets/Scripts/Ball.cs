@@ -34,6 +34,7 @@ public class Ball : MonoBehaviour {
     }
 
     public void Reset () {
+        inPlay = false;
         transform.position = startPosition;
         rigidBody.useGravity = false;
         rigidBody.velocity = Vector3.zero;

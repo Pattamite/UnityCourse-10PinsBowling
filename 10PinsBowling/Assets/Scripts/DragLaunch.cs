@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Ball))]
 public class DragLaunch : MonoBehaviour {
+    public bool isDebug = true;
     private Vector3 dragStart;
     private Vector3 dragEnd;
     private float startTime;
@@ -37,6 +38,8 @@ public class DragLaunch : MonoBehaviour {
         float launchSpeedZ = (dragEnd.y - dragStart.y) / dragDutation; // Not a mistake !!
 
         Vector3 launchVelocity = new Vector3(launchSpeedX, 0, launchSpeedZ);
-        ball.Launch(launchVelocity);
+        if (isDebug || !ball.inPlay) {
+            ball.Launch(launchVelocity);
+        }
     }
 }
