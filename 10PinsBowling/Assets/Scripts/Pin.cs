@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pin : MonoBehaviour {
-
     public float standingTreshold;
     public float distanceToRaise = 80f;
+
     private Rigidbody rigidBody;
 
     // Use this for initialization

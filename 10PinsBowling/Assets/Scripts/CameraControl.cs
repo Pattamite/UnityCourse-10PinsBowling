@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
     public Ball ball;
-
     public float cameraLimitZ = 1800;
+
     private Vector3 offset;
 
 	// Use this for initialization

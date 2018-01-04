@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour { 
-    private Rigidbody rigidBody;
-    private AudioSource audioSource;
-
     public Vector3 launchVelocity;
     public bool inPlay = false;
 
     private Vector3 startPosition;
-    
-	// Use this for initialization
-	void Start(){
+    private Rigidbody rigidBody;
+    private AudioSource audioSource;
+
+    // Use this for initialization
+    void Start(){
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.useGravity = false;
 

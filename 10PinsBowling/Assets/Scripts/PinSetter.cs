@@ -4,16 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
+    public int lastStandingCount = -1;
+    public float settleTime = 3f;
     public Text standingText;
     public GameObject pinSet;
 
-    private Ball ball;
-
-    public int lastStandingCount = -1;
-    public float settleTime = 3f;
-
     private bool isBallEnter = false;
     private float lastChangeTime;
+    private Ball ball;
     // Use this for initialization
     void Start () {
         ball = GameObject.FindObjectOfType<Ball>();
@@ -44,7 +42,7 @@ public class PinSetter : MonoBehaviour {
         Instantiate(pinSet, new Vector3(0, 0, 1829), Quaternion.identity);
     }
 
-    int CountStanding () {
+    public int CountStanding () {
         int standing = 0;
 
         foreach (Pin pin in GameObject.FindObjectsOfType<Pin>()) {
@@ -52,11 +50,10 @@ public class PinSetter : MonoBehaviour {
                 standing++;
             }
         }
-
         return standing;
     }
 
-    void CheckStanding () {
+    private void CheckStanding () {
         int currentStanding = CountStanding();
 
         if(currentStanding != lastStandingCount) {
@@ -70,7 +67,7 @@ public class PinSetter : MonoBehaviour {
         }
     }
 
-    void PinHaveSettled () {
+    private void PinHaveSettled () {
         lastStandingCount = -1;
         standingText.color = Color.green;
 
