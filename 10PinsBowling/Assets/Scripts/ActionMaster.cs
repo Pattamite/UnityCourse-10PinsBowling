@@ -13,7 +13,18 @@ public class ActionMaster {
         EndGame,
     };
 
-	public Action Bowl (int pins) {
+    public static Action NextAction (List<int> pinFalls) {
+        ActionMaster am = new ActionMaster();
+        Action currentAction = new Action();
+
+        foreach(int pinFall in pinFalls) {
+            currentAction = am.Bowl(pinFall);
+        }
+
+        return currentAction;
+    }
+
+	private Action Bowl (int pins) {
         if (pins < 0 || pins > 10) {
             throw new UnityException("Invalid pins value");
         }
