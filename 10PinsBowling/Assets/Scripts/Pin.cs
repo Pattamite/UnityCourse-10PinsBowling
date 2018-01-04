@@ -11,7 +11,6 @@ public class Pin : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-        rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 	
 	// Update is called once per frame
@@ -42,6 +41,7 @@ public class Pin : MonoBehaviour {
     public void Raise () {
         if (IsStanding()) {
             transform.Translate(new Vector3(0, distanceToRaise, 0), Space.World);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             rigidBody.useGravity = false;
             rigidBody.isKinematic = true;
         }

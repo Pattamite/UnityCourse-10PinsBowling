@@ -33,13 +33,16 @@ public class DragLaunch : MonoBehaviour {
         endTime = Time.time;
 
         float dragDutation = endTime - startTime;
+        if(dragDutation > 0f) {
+            float launchSpeedX = (dragEnd.x - dragStart.x) / dragDutation;
+            float launchSpeedZ = (dragEnd.y - dragStart.y) / dragDutation; // Not a mistake !!
 
-        float launchSpeedX = (dragEnd.x - dragStart.x) / dragDutation;
-        float launchSpeedZ = (dragEnd.y - dragStart.y) / dragDutation; // Not a mistake !!
-
-        Vector3 launchVelocity = new Vector3(launchSpeedX, 0, launchSpeedZ);
-        if (isDebug || !ball.inPlay) {
-            ball.Launch(launchVelocity);
-        }
+            if(launchSpeedX != 0 || launchSpeedZ != 0) {
+                Vector3 launchVelocity = new Vector3(launchSpeedX, 0, launchSpeedZ);
+                if (isDebug || !ball.inPlay) {
+                    ball.Launch(launchVelocity);
+                }
+            }
+        } 
     }
 }

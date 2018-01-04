@@ -13,7 +13,6 @@ public class Ball : MonoBehaviour {
     // Use this for initialization
     void Start(){
         rigidBody = GetComponent<Rigidbody>();
-        rigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rigidBody.useGravity = false;
 
         startPosition = transform.position;
@@ -37,6 +36,7 @@ public class Ball : MonoBehaviour {
     public void Reset () {
         inPlay = false;
         transform.position = startPosition;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         rigidBody.useGravity = false;
         rigidBody.velocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
