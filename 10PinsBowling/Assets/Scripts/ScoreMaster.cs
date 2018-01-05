@@ -15,6 +15,17 @@ public class ScoreMaster {
         return cumulativeScores;
     }
 
+    public static int ScoreTotal (List<int> rolls) {
+        List<int> cumulativeScores = new List<int>();
+        int runningTotal = 0;
+
+        foreach (int frameScore in ScoreFrames(rolls)) {
+            runningTotal += frameScore;
+        }
+
+        return runningTotal;
+    }
+
     public static List<int> ScoreFrames (List<int> rolls) {
         List<int> frameList = new List<int>();
         for (int i = 1; i < rolls.Count; i += 2) {

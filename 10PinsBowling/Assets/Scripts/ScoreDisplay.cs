@@ -6,16 +6,24 @@ using UnityEngine.UI;
 public class ScoreDisplay : MonoBehaviour {
     public Text[] rollTexts;
     public Text[] frameTexts;
+    public Text highScoreText;
 	// Use this for initialization
 	void Start () {
-		for(int i = 0; i < rollTexts.Length; i++) {
-            rollTexts[i].text = (i % 10).ToString();
+        Reset();
+    }
+
+    public void Reset () {
+        for (int i = 0; i < rollTexts.Length; i++) {
+            rollTexts[i].text = " ";
         }
 
         for (int i = 0; i < frameTexts.Length; i++) {
-            frameTexts[i].text = (i % 10).ToString();
+            frameTexts[i].text = " ";
         }
     }
+
+    // Update is called once per frame
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,7 +51,7 @@ public class ScoreDisplay : MonoBehaviour {
             if (rolls[i] == 0) {
                 output += "-";
             }
-            else if (box % 2 == 0 && rolls[i - 1] + rolls[i] == 10) {
+            else if ((box % 2 == 0 || box == 21 ) && rolls[i - 1] + rolls[i] == 10) {
                 output += "/";
             }
             else if (box >= 19 && rolls[i] == 10) {
@@ -57,5 +65,9 @@ public class ScoreDisplay : MonoBehaviour {
             }
         }
         return output;
+    }
+
+    public void SetHighScore (int score) {
+        highScoreText.text = score.ToString();
     }
 }

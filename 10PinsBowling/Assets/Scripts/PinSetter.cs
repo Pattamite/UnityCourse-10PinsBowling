@@ -9,11 +9,13 @@ public class PinSetter : MonoBehaviour {
     private PinCounter pinCounter;
     private ActionMaster actionMaster = new ActionMaster();
     private Animator animator;
+    private GameManager gameManager;
 
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
         pinCounter = GameObject.FindObjectOfType<PinCounter>();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 	
 	// Update is called once per frame
@@ -33,6 +35,9 @@ public class PinSetter : MonoBehaviour {
             pinCounter.Reset();
         }
         else if (action == ActionMaster.Action.EndGame) {
+            animator.SetTrigger("resetTrigger");
+            pinCounter.Reset();
+            gameManager.Reset();
         }
     }
 
